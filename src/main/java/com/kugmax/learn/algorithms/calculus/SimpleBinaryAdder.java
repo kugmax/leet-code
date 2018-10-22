@@ -37,4 +37,22 @@ public class SimpleBinaryAdder {
 
         return c;
     }
+
+    public int[] add2(int[] a, int[] b) {
+        int n = a.length;
+        int[] c =  new int[n + 1];
+
+        int carry = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            int tmp = a[i] + b[i] + carry;
+
+            c[i + 1] = tmp % 2;
+
+            carry = tmp >= 2 ? 1 : 0;
+        }
+
+        c[0] = carry;
+
+        return c;
+    }
 }

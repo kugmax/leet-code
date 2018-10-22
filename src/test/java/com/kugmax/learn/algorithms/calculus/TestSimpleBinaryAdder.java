@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 public class TestSimpleBinaryAdder {
 
     @Test
-    public void test_1() {
+    public void add_1() {
         SimpleBinaryAdder algorithm = new SimpleBinaryAdder();
 
         int[] result = algorithm.add(
@@ -24,10 +24,38 @@ public class TestSimpleBinaryAdder {
     }
 
     @Test
-    public void test_2() {
+    public void add_2() {
         SimpleBinaryAdder algorithm = new SimpleBinaryAdder();
 
         int[] result = algorithm.add(
+                new int[]{1, 0}, //2
+                new int[]{1, 0}); //2
+
+        IntStream.of(result).forEach(System.out::print);
+        System.out.println();
+
+        assertArrayEquals(new int[]{1, 0, 0}, result); //4
+    }
+
+    @Test
+    public void add2_1() {
+        SimpleBinaryAdder algorithm = new SimpleBinaryAdder();
+
+        int[] result = algorithm.add2(
+                new int[]{0, 1, 0}, //2
+                new int[]{0, 1, 0}); //2
+
+        IntStream.of(result).forEach(System.out::print);
+        System.out.println();
+
+        assertArrayEquals(new int[]{0, 1, 0, 0}, result); //4
+    }
+
+    @Test
+    public void add2_2() {
+        SimpleBinaryAdder algorithm = new SimpleBinaryAdder();
+
+        int[] result = algorithm.add2(
                 new int[]{1, 0}, //2
                 new int[]{1, 0}); //2
 
