@@ -22,11 +22,11 @@ public class PhoneToLetters {
     }
 
     public List<String> letterCombinations(String digits) {
-        char[] chars = digits.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            for () {
-
-            }        }
+//        char[] chars = digits.toCharArray();
+//        for (int i = 0; i < chars.length; i++) {
+//            for () {
+//            }
+//        }
 
 
         return null;
