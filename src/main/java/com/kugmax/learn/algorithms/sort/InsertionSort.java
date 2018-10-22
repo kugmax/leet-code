@@ -5,10 +5,14 @@ import java.util.stream.IntStream;
 public class InsertionSort {
 
     public int[] sort(int[] a) {
+        return sort(a, false);
+    }
+
+    public int[] sort(int[] a, boolean reverse) {
         for (int j = 1; j < a.length; j++) {
             int key = a[j];
             int i = j - 1;
-            while (i >= 0 && a[i] > key) {
+            while (i >= 0 && checkKey(a[i], key, reverse) ) {
                 a[i + 1] = a[i];
                 i--;
             }
@@ -19,5 +23,9 @@ public class InsertionSort {
         }
 
         return a;
+    }
+
+    private boolean checkKey(int ai, int key, boolean reverse) {
+        return reverse ? ai < key : ai > key;
     }
 }
