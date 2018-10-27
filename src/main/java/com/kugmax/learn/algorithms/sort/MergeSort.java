@@ -1,5 +1,7 @@
 package com.kugmax.learn.algorithms.sort;
 
+import java.util.Arrays;
+
 public class MergeSort implements SortAlgorithm {
     @Override
     public int[] sort(int[] a) {
@@ -8,48 +10,34 @@ public class MergeSort implements SortAlgorithm {
 
     @Override
     public int[] sort(int[] a, boolean reverse) {
-        return mergeSort(a, 0, a.length - 1, reverse);
-    }
-
-    private int[] mergeSort(int[] a, int p, int r, boolean reverse) {
-        if (p < r) {
-            int q = (p +r) / 2;
-
-            mergeSort(a, p, q, reverse);
-            mergeSort(a, q + 1, r, reverse);
-
-            merge(a, p, q, r, reverse);
+        if (a.length < 2) {
+            return a;
         }
 
-        return a;
+        int middle = a.length / 2;
+
+        return merge(
+                sort(Arrays.copyOfRange(a, 0, middle), reverse),
+                sort(Arrays.copyOfRange(a, middle, a.length), reverse),
+                reverse);
     }
 
-    private int[] merge(int[] a, int p, int q, int r, boolean reverse) {
-        if ( !(p <= q && q < r) ) {
-            throw new IllegalArgumentException("Shout be p <= q && q < r");
-        }
 
-        int n1 = q - p + 1;
-        int n2 = r - q;
+    private int[] merge(int[] left, int[] right, boolean reverse) {
+        int[] result = new int[left.length + right.length];
 
-        int[] left = new int[n1 + 1];
-        int[] right = new int[n2 + 1];
-
-        System.arraycopy(a, p, left, 0, n1);
-        System.arraycopy(a, q + 1, right, 0, n2);
-
-        left[n1] = reverse ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-        right[n2] = reverse ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-
-        for (int i = 0, j = 0, k = p; k <= r; k++) {
-            if (checkDirection(left[i], right[j], reverse)) {
-                a[k] = left[i++];
+        int i = 0, j = 0;
+        for (int k = 0; k < result.length; k++) {
+            if (j >= right.length ||
+                    (i < left.length && checkDirection(left[i], right[j], reverse))
+                    ) {
+                result[k] = left[i++];
             } else {
-                a[k] = right[j++];
+                result[k] = right[j++];
             }
         }
 
-        return a;
+        return result;
     }
 
     private boolean checkDirection(int left, int right, boolean reverse) {

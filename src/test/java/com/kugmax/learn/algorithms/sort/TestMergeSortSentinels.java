@@ -4,10 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class TestMergeSort {
+public class TestMergeSortSentinels {
+
     @Test
     public void test() {
-        MergeSort algorithm = new MergeSort();
+        MergeSortSentinels algorithm = new MergeSortSentinels();
 
         assertArrayEquals(new int[]{1, 2, 2, 3, 4, 5, 6, 7}, algorithm.sort(new int[]{5, 2, 4, 7, 1, 3, 2, 6}));
         assertArrayEquals(new int[]{1, 2, 3, 4, 5}, algorithm.sort(new int[]{5, 2, 4, 1, 3}));
@@ -23,7 +24,7 @@ public class TestMergeSort {
 
     @Test
     public void test_reverse() {
-        MergeSort algorithm = new MergeSort();
+        MergeSortSentinels algorithm = new MergeSortSentinels();
 
         assertArrayEquals(new int[]{7, 6, 5, 4, 3, 2, 2, 1}, algorithm.sort(new int[]{5, 2, 4, 7, 1, 3, 2, 6}, true));
         assertArrayEquals(new int[]{5, 4, 3, 2, 1}, algorithm.sort(new int[]{5, 2, 4, 1, 3}, true));
