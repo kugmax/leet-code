@@ -16,6 +16,10 @@ public class RemoveNThNodeSolution {
 //    After removing the second node from the end, the linked list becomes 1->2->3->5.
 
     public ListNode removeFromBack(ListNode head, int n) {
+        return onePass(head, n);
+    }
+
+    public ListNode my(ListNode head, int n) {
         Map<Integer, ListNode> memory = new HashMap<>();
 
         ListNode loop = head;
@@ -45,7 +49,7 @@ public class RemoveNThNodeSolution {
         return head;
     }
 
-    public ListNode _removeFromBack(ListNode head, int n) {
+    public ListNode twoPass(ListNode head, int n) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         int length  = 0;
@@ -61,6 +65,24 @@ public class RemoveNThNodeSolution {
             first = first.next;
         }
         first.next = first.next.next;
+        return dummy.next;
+    }
+
+    private ListNode onePass(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode first = dummy;
+        ListNode second = dummy;
+        // Advances first pointer so that the gap between first and second is n nodes apart
+        for (int i = 1; i <= n + 1; i++) {
+            first = first.next;
+        }
+        // Move first to the end, maintaining the gap
+        while (first != null) {
+            first = first.next;
+            second = second.next;
+        }
+        second.next = second.next.next;
         return dummy.next;
     }
 
